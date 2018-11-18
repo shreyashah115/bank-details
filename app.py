@@ -34,4 +34,4 @@ def get_branch_details():
 	return render_template("bank-details.html", details=cur)
 
 if __name__ == "__main__":
-	app.run
+	app.run(debug=True)
