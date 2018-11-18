@@ -2,3 +2,4 @@ Flask
 Flask-PyMongo
 pandas
 gunicorn
+flask-restful
