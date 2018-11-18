@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<title>Bank Information Portal</title>
+</head>
+<style>
+		.btn {
+			margin-top: 20px;
+		}
+		.form-group {
+			margin-top: 20px;
+		}
+		p {
+			margin-top: 20px;
+		}
+</style>
+<body>
+<div class="container">
+	<div id ="ifsc-button">
+		<button type="button" class="btn btn-primary">Bank Details by IFSC Code</button>
+	</div>
+		
+	<div id="branch-button">
+		<button type="button" class="btn btn-primary">Branch Details by City and Bank Name</button>
+	</div>
+</div>
+
+<div class="container" id="ifsc" hidden>
+	<form action="{{ url_for('get_ifsc_details') }}" method="post">
+		<div class="form-group">
+			<label for="ifsc">IFSC Code:</label>
+			<input type="text" class="form-control" id="ifsc" placeholder="IFSC Code" name="ifsc" required>
+
+			<button type="submit" class="btn btn-default">Submit</button>
+		</div>
+	</form>
+</div>
+<div class="container" id= "branch" hidden>
+	<p>Please enter all details in uppercase format.</p>
+	<form action="{{ url_for('get_branch_details') }}" method="post">
+		<div class="form-group">
+			<label for="bank-name">Bank Name:</label>
+			<input type="text" class="form-control" id="bank-name" placeholder="BANK" name="bank-name" required>
+		</div>
+		<div class="form-group">
+			<label for="city">City: </label>
+			<input type="text" class="form-control" id="city" placeholder="CITY" name="city" required>
+			<button type="submit" class="btn btn-default">Submit</button>
+		</div>
+	</form>
+</div>
+
+<script>
+		$("#ifsc-button").on("click", function() {
+			$("#ifsc").show();
+			$("#submit").show();
+			$("#ifsc-button").hide();
+			$("#branch-button").hide();
+		});
+		$("#branch-button").on("click", function() {
+			$("#branch").show();
+			$("#submit").show();
+			$("#ifsc-button").hide();
+			$("#branch-button").hide();
+		});
+</script>
+
+</body>
+</html>

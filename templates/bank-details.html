@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Bank Details</title>
+		
+		<!-- css from w3 site for the table -->
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+        </style>
+    </head>
+
+<body>
+		{% if details.count() == 0 %}
+		<h2>There are no details available for the data you entered.</h2>
+		{% else %}
+		<table>
+			<tr>
+				<th>IFSC</th>
+				<th>Bank ID</th>
+				<th>Bank Name</th>
+				<th>Branch</th>
+				<th>Address</th>
+				<th>City</th>
+				<th>District</th>
+				<th>State</th>
+			</tr>
+            {% for row in details %}
+					<td>{{ row.get('ifsc') }}</td>
+					<td>{{ row.get('bank_id') }}</td>
+					<td>{{ row.get('bank_name') }}</td>
+					<td>{{ row.get('branch') }}</td>
+					<td>{{ row.get('address') }}</td>
+					<td>{{ row.get('city') }}</td>
+					<td>{{ row.get('district') }}</td>
+					<td>{{ row.get('state') }}</td>
+				</tr>
+			{% endfor %}
+			{% endif %}
+		</table>
+	</body>
+</html>
